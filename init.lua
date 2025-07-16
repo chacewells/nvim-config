@@ -21,21 +21,56 @@ vim.opt.ruler = true
 vim.opt.tabstop    = 4
 vim.opt.shiftwidth = 4
 
-
+-- nvim-tree setup
 require("nvim-tree").setup({
-  sort = {
-    sorter = "case_sensitive",
-  },
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
+    sort = {
+        sorter = "case_sensitive",
+    },
+    view = {
+        width = 30,
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = true,
+    },
 })
 
--- keymap
 vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
+
+-- telescope setup
+local ts = require('telescope')
+ts.setup{
+    init = function()
+      -- restore old ft_to_lang API (if you still need it)
+      vim.treesitter.ft_to_lang = require('nvim-treesitter.parsers').ft_to_lang
+    end,
+    defaults = {
+        preview = {
+          treesitter = false,
+        },
+        prompt_prefix = "🔍 ",
+        selection_caret = "➤ ",
+        path_display = { "shorten" },
+        file_ignore_patterns = { "node_modules", "%.git/" },
+        mappings = {
+            i = {
+                ["<C-j>"] = "move_selection_next",
+                ["<C-k>"] = "move_selection_previous",
+                ["<C-c>"] = "close",
+            },
+            n = {
+                ["q"] = "close",
+            },
+        },
+    },
+}
+
+vim.keymap.set(
+  'n',
+  '<leader>fp',
+  ts.extensions.project.project,
+  { desc = "Telescope Projects" }
+)
+
