@@ -10,6 +10,9 @@ vim.opt.termguicolors = true
 -- Enable line numbers
 vim.opt.number = true
 
+-- Clipboard integration
+vim.opt.clipboard = "unnamedplus"
+
 -- Keep indentation consistent
 vim.opt.autoindent = true
 vim.opt.expandtab  = true
