@@ -2,6 +2,7 @@ return {
     'nvim-telescope/telescope-project.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = function()
+        local project_actions  = require("telescope._extensions.project.actions")
         local base_dirs = {
             '~/IdeaProjects',           -- scan all repos here
             '~/dev',                    -- scan all repos here
@@ -25,6 +26,11 @@ return {
                     hidden_files = true,         -- include dotfiles?
                     order_by     = 'recent',     -- sort by last-used
                     sync_with_nvim_tree = true, -- keep nvim-tree in sync
+                    cd_scope = { 'global' },
+                    on_project_selected = function(prompt_bufnr)
+                        -- this will :cd into the project root
+                        project_actions.change_working_directory(prompt_bufnr, false)
+                    end,
                 },
             },
         }
