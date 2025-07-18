@@ -22,6 +22,7 @@ return {
         { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Help tags' },
         { '<leader>gb', '<cmd>Telescope git_branches<cr>', desc = 'Git Branches' },
         { '<leader>gC', '<cmd>Telescope git_commits<cr>',  desc = 'Git: Repo Commits'  },
+        { '<leader>gs', '<cmd>Telescope git_status<cr>',  desc = 'Git Status'  },
       },
       opts = {
           defaults = {
