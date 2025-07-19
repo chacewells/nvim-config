@@ -53,6 +53,9 @@ return {
           maven = {
             downloadSources = true,
           },
+          gradle = {
+            downloadSources = true,
+          },
           implementationsCodeLens = {
             enabled = true,
           },
