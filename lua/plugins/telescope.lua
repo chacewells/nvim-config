@@ -23,6 +23,9 @@ return {
         { '<leader>gb', '<cmd>Telescope git_branches<cr>', desc = 'Git Branches' },
         { '<leader>gC', '<cmd>Telescope git_commits<cr>',  desc = 'Git: Repo Commits'  },
         { '<leader>gs', '<cmd>Telescope git_status<cr>',  desc = 'Git Status'  },
+        -- Enhanced go-to-definition with Telescope
+        { 'gd', '<cmd>Telescope lsp_definitions<cr>', desc = "Go to definition" },
+        { 'gr', '<cmd>Telescope lsp_references<cr>', desc = "Go to references" },
       },
       opts = {
           defaults = {
