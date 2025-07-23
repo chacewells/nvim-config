@@ -18,10 +18,26 @@ return {
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()
+
             require("neotest").setup({
                 adapters = {
                     require("neotest-java")({
                         ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
+
+                        -- point at the wrapper script in your repo root
+                        gradle = vim.fn.getcwd() .. "/gradlew",
+
+                        -- compile both main and test classes first
+                        compile_task = "testClasses",
+
+                        -- prints a full classpath (build/classes + all deps)
+                        print_classpath_task = "printTestClasspath",
+
+                        -- tells JUnit ConsoleLauncher to scan those folders/jars
+                        args = { "--scan-classpath" },
+
+                        -- ensure the tasks run in your project root
+                        cwd = vim.fn.getcwd(),
                     }),
                 },
             })
