@@ -84,7 +84,7 @@ ts.setup{
 vim.g["test#java#runner"] = "gradletest"
 
 -- point it at your wrapper (omit the “test” subcommand here!)
-vim.g["test#java#gradletest#executable"] = "./gradlew"
+-- vim.g["test#java#gradletest#executable"] = "./gradlew test"
 
 -- whenever the working directory changes...
 -- vim.api.nvim_create_autocmd("DirChanged", {
