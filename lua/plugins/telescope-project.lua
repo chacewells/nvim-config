@@ -5,7 +5,7 @@ return {
         { '<leader>fp', "<cmd>Telescope project<cr>", desc = "Telescope Projects" }
     },
     config = function()
-        local project_actions  = require("telescope._extensions.project.actions")
+        -- local project_actions  = require("telescope._extensions.project.actions")
         local base_dirs = {
             '~/IdeaProjects',           -- scan all repos here
             '~/dev',                    -- scan all repos here

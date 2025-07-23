@@ -8,6 +8,7 @@ return {
   },
   config = function()
     local jdtls = require('jdtls')
+    local java21 = vim.fn.stdpath('data') .. '.sdkman/candidates/java/21.0.7-amzn/bin/java'
     
     -- Find root of project
     local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
@@ -25,7 +26,7 @@ return {
     -- Configuration
     local config = {
       cmd = {
-        'java',
+        java21,
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
