@@ -78,28 +78,20 @@ ts.setup{
 -- vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], { noremap = true, silent = true })
 
 -- optional: run tests in a floating terminal/buffer instead of blocking Vim:
--- vim.g["test#strategy"] = "neovim"
+vim.g["test#strategy"] = "neovim"
 
 -- pick the GradleTest runner (not the default “test” command)
 vim.g["test#java#runner"] = "gradletest"
 
 -- point it at your wrapper (omit the “test” subcommand here!)
--- vim.g["test#java#gradletest#executable"] = "./gradlew test"
+vim.g["test#java#gradletest#executable"] = "JAVA_HOME=" .. vim.fn.expand'~/.sdkman/candidates/java/17.0.16-amzn' .. " ./gradlew test"
 
--- whenever the working directory changes...
--- vim.api.nvim_create_autocmd("DirChanged", {
---   pattern = "*",
---   callback = function(ev)
---     -- ev.data.cwd is the new directory
---     vim.notify("Dir changed ➜ " .. vim.fn.getcwd(), vim.log.levels.INFO)
--- 
---     -- if you wanted to force vim-test to re-detect your project root,
---     -- you could clobber the root markers here, e.g.:
---     vim.g["test#project_root"] = vim.fn.getcwd()
--- 
---     -- …or even automatically cd back up to your real repo root:
---     -- local root = vim.fn.finddir('.git', ev.data.cwd .. ';')
---     -- if root ~= '' then vim.cmd('lcd ' .. vim.fn.fnamemodify(root, ':h')) end
---   end,
--- })
+local opts = { silent = true, noremap = true }
+
+-- vim-test mappings
+vim.keymap.set('n', '<leader>tn', '<cmd>TestNearest<CR>', opts)
+vim.keymap.set('n', '<leader>tf', '<cmd>TestFile<CR>',    opts)
+vim.keymap.set('n', '<leader>ta', '<cmd>TestSuite<CR>',   opts)
+vim.keymap.set('n', '<leader>tl', '<cmd>TestLast<CR>',    opts)
+vim.keymap.set('n', '<leader>tg', '<cmd>TestVisit<CR>',   opts)
 
